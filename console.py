@@ -4,7 +4,12 @@ Command interpreter for Holberton AirBnB project
 """
 import cmd
 from models import base_model, user, storage, CNC
-
+'''
+storage = file_storage.FileStorage()
+storage.reload()
+"""CNC - dictionary = { Class Name (string) : Class Type }"""
+CNC = file_storage.FileStorage.CNC
+'''
 BaseModel = base_model.BaseModel
 User = user.User
 FS = storage
@@ -105,13 +110,40 @@ class HBNBCommand(cmd.Cmd):
                  City.create()
         """
         arg = arg.split()
+        d = self.create_kwargs(arg)
         error = self.__class_err(arg)
         if not error:
             for k, v in CNC.items():
                 if k == arg[0]:
-                    my_obj = v()
+                    my_obj = v(**d)
                     my_obj.save()
                     print(my_obj.id)
+
+    def create_kwargs(self, arg):
+        """
+        takes input parameters and creates a dictionary
+        to be passed to Obj.creat(kwargs)
+        :return: Dictionary
+        """
+        d = {}
+        length = len(arg)
+        if length > 1:
+            for param in range(1, length):
+                if not arg[param].startswith('=') and '=' in arg[param]:
+                    position = arg[param].index('=')
+                    key = arg[param][:position]
+                    value = arg[param][(position+1):]
+                    try:
+                        value = int(value)
+                    except:
+                        try:
+                            value = float(value)
+                        except:
+                            if value[0] == '"' and value[len(value)-1] == '"':
+                                value = value[1:-1]
+                                value = value.replace('_', ' ')
+                    d[key] = value
+            return (d)
 
     def do_show(self, arg):
         """show: show [ARG] [ARG1]

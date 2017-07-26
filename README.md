@@ -95,6 +95,8 @@ github repo
 
 * MJ Johnson, [@mj31508](https://github.com/mj31508)
 * David John Coleman II, [davidjohncoleman.com](http://www.davidjohncoleman.com/)
+* Julija Lee [@LeeJulija](https://twitter.com/LeeJulija)
+* Christian Agha [@ChristyanAgha](https://twitter.com/ChristyanAgha)
 
 ## License
 

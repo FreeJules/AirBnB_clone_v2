@@ -2,13 +2,29 @@
 """
 Place Class from Models Module
 """
-
+from sqlalchemy import Column, Integer, Float, String, ForeignKey
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
     """Place class handles all application places"""
-
+    """
+    place_id = Column(String(60), ForeignKey("places.id"), nullable=False)
+    amenity_id = Column(String(60), ForeignKey("amenities.id"), nullable=False)
+    """
+    """if storage is db"""
+    __tablename__ = 'places'
+    city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
+    user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
+    name = Column(String(128), nullable=False)
+    description = Column(String(1024))
+    number_rooms = Column(Integer, default=0, nullable=False)
+    number_bathrooms = Column(Integer, default=0, nullable=False)
+    max_guest = Column(Integer, default=0, nullable=False)
+    price_by_night = Column(Integer, default=0, nullable=False)
+    latitude = Column(Float)
+    longitude = Column(Float)
+    """if storage is file"""
     city_id = ''
     user_id = ''
     name = ''

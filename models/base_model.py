@@ -7,13 +7,21 @@ import json
 import models
 from uuid import uuid4, UUID
 from datetime import datetime
-
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
 now = datetime.now
 strptime = datetime.strptime
+Base = declarative_base()
 
 
 class BaseModel:
     """attributes and functions for BaseModel class"""
+    """if storage is db"""
+    id = Column(String(60), primary_key=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow, \
+                        nullable=False)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, \
+                        nullable=False)
 
     def __init__(self, *args, **kwargs):
         """instantiation of new BaseModel Class"""
@@ -22,7 +30,7 @@ class BaseModel:
         else:
             self.id = str(uuid4())
             self.created_at = now()
-            models.storage.new(self)
+            """models.storage.new(self)"""
 
     def __set_attributes(self, d):
         """converts kwargs values to python class attributes"""
@@ -38,8 +46,11 @@ class BaseModel:
                                            "%Y-%m-%d %H:%M:%S.%f")
         if '__class__' in d:
             d.pop('__class__')
+        for key, value in d.items():
+            if key not in ['id', 'created_at', 'updated_at']:
+                setattr(self, key, value)
         self.__dict__ = d
-        models.storage.new(self)
+        """models.storage.new(self)"""
 
     def __is_serializable(self, obj_v):
         """checks if object is serializable"""
@@ -57,6 +68,7 @@ class BaseModel:
     def save(self):
         """updates attribute updated_at to current time"""
         self.updated_at = now()
+        models.storage.new(self)
         models.storage.save()
 
     def to_json(self):
@@ -69,6 +81,10 @@ class BaseModel:
                 bm_dict[k] = str(v)
         bm_dict["__class__"] = type(self).__name__
         return(bm_dict)
+
+    def delete(self):
+        """delete the current instance from the storage"""
+        pass
 
     def __str__(self):
         """returns string type representation of object instance"""

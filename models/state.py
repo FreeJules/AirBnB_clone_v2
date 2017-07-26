@@ -2,13 +2,16 @@
 """
 State Class from Models Module
 """
-
+from sqlalchemy import Column, String
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
     """State class handles all application states"""
-
+    """if storage is db"""
+    __tablename__ = 'states'
+    name = Column(String(128), nullable=False)
+    """if storage is file"""
     name = ''
 
     def __init__(self, *args, **kwargs):

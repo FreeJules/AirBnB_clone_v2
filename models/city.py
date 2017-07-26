@@ -2,13 +2,17 @@
 """
 City Class from Models Module
 """
-
+from sqlalchemy import Column, String, ForeignKey
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
     """City class handles all application cities"""
-
+    """if storage is db"""
+    __tablename__ = 'cities'
+    state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
+    name = Column(String(128), nullable=False)
+    """if storage is file"""
     state_id = ''
     name = ''
 

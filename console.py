@@ -129,7 +129,8 @@ class HBNBCommand(cmd.Cmd):
         length = len(arg)
         if length > 1:
             for param in range(1, length):
-                if not arg[param].startswith('=') and '=' in arg[param]:
+                if not arg[param].startswith('=') and not arg[param]. \
+                   endswith('=') and '=' in arg[param]:
                     position = arg[param].index('=')
                     key = arg[param][:position]
                     value = arg[param][(position+1):]
@@ -140,8 +141,11 @@ class HBNBCommand(cmd.Cmd):
                             value = float(value)
                         except:
                             if value[0] == '"' and value[len(value)-1] == '"':
+                                print(value)
                                 value = value[1:-1]
                                 value = value.replace('_', ' ')
+                            else:
+                                continue
                     d[key] = value
             return (d)
 

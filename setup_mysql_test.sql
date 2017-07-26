@@ -1,4 +1,4 @@
--- script that creates the database hbtn_0d_2 and the user user_0d_2
+-- MySQL setup test
 CREATE DATABASE IF NOT EXISTS hbnb_test_db;
 GRANT ALL PRIVILEGES ON hbnb_test_db.*
 TO 'hbnb_test'@'localhost'

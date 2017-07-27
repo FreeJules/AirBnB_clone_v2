@@ -92,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
         USAGE: Command to quit the program
         """
         if getenv("HBNB_TYPE_STORAGE") == "db":
-            storage.__session.close()
+            storage._DBStorage__session.close()
         return True
 
     def do_EOF(self, line):

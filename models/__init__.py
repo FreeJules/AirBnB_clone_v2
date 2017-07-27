@@ -6,12 +6,13 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+from os import getenv
 
-if os.getenv("HBNB_TYPE_STORAGE") == "db":
-    storage = db_storage.DBStorage
+if getenv("HBNB_TYPE_STORAGE") == "db":
+    storage = db_storage.DBStorage()
     storage.reload()
 else:
     storage = file_storage.FileStorage()
-    storage.reload()
+    self.reload()
     """CNC - dictionary = { Class Name (string) : Class Type }"""
     CNC = file_storage.FileStorage.CNC

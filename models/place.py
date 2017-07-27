@@ -5,13 +5,12 @@ Place Class from Models Module
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from models.base_model import BaseModel, Base
-
 metadata = Base.metadata
 place_amenity = Table("place_amenity", metadata,\
-                      Column("place_id", String(60), ForeignKey("Place.id"),\
+                      Column("place_id", String(60), ForeignKey("places.id"),\
                              nullable=False),
                       Column("amenity_id", String(60),\
-                             ForeignKey("Amenity.id"), nullable=False))
+                             ForeignKey("amenities.id"), nullable=False))
 
 
 class Place(BaseModel, Base):

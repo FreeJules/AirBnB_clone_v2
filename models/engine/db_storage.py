@@ -21,6 +21,14 @@ class DBStorage:
     """
     __engine = None
     __session = None
+    CNC = {
+        'Amenity': Amenity,
+        'City': City,
+        'Place': Place,
+        'Review': Review,
+        'State': State,
+        'User': User
+    }
 
     def __init__(self):
         """
@@ -35,31 +43,19 @@ class DBStorage:
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(bind=self.__engine)
 
-        CNC = {
-            'Amenity': Amenity,
-            'City': City,
-            'Place': Place,
-            'Review': Review,
-            'State': State,
-            'User': User
-        }
-
     def all(self, cls=None):
         """
         queries all or selected database objects
         """
-        dbd = {}
-        if cls:
-            for item in self.__session.query(cls).all():
-                dbd[item.id] = item
-        return (dbd)
+        if cls is not None:
+            for item in self.__session.query(self.CNC[cls]).all():
+                print(item)
 
     def new(self, obj):
         """
         add new object to the current database session
-        self.__session.add(obj)
         """
-        pass
+        self.__session.add(obj)
 
     def save(self):
         """

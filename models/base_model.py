@@ -22,8 +22,8 @@ class BaseModel:
     """attributes and functions for BaseModel class"""
     if getenv("HBNB_TYPE_STORAGE") == 'db':
         id = Column(String(60), primary_key=True, nullable=False)
-        created_at = Column(DateTime(datetime.utcnow()))
-        updated_at = Column(DateTime(datetime.utcnow()))
+        created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+        updated_at = Column(DateTime, datetime.utcnow, nullable=False)
 
     def __init__(self, *args, **kwargs):
         """instantiation of new BaseModel Class"""

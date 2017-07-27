@@ -4,7 +4,7 @@ Command interpreter for Holberton AirBnB project
 """
 import cmd
 from models import base_model, user, storage, CNC
-
+from os import getenv
 
 BaseModel = base_model.BaseModel
 User = user.User
@@ -91,6 +91,8 @@ class HBNBCommand(cmd.Cmd):
         """quit: quit
         USAGE: Command to quit the program
         """
+        if getenv("HBNB_TYPE_STORAGE") == "db":
+            storage.__session.close()
         return True
 
     def do_EOF(self, line):

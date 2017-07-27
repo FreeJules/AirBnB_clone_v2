@@ -14,8 +14,9 @@ place_amenity = Table("place_amenity", metadata,\
                              ForeignKey("Amenity.id"), nullable=False))
 
 
-class Place(BaseModel):
-    """Place class handles all application places
+class Place(BaseModel, Base):
+    """
+    Place class handles all application places
     """
 
     """if storage is db"""

@@ -211,6 +211,7 @@ class HBNBCommand(cmd.Cmd):
                 if arg[1] in k and arg[0] in k:
                     del fs_o[k]
                     FS.save()
+                    return
 
     def __rreplace(self, s, l):
         """replaces characters from input list with input string"""

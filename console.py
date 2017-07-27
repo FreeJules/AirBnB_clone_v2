@@ -209,9 +209,9 @@ class HBNBCommand(cmd.Cmd):
             fs_o = FS.all()
             for k in fs_o.keys():
                 if arg[1] in k and arg[0] in k:
-                    del fs_o[k]
-                    FS.save()
-                    return
+                    obj_to_del = fs_o[k]
+                    break
+            obj_to_del.delete()
 
     def __rreplace(self, s, l):
         """replaces characters from input list with input string"""

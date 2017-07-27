@@ -80,11 +80,13 @@ class BaseModel:
             else:
                 bm_dict[k] = str(v)
         bm_dict["__class__"] = type(self).__name__
+        if '_sa_instance_state' in bm_dict:
+            bm_dict.pop('_sa_instance_state', None)
         return(bm_dict)
 
     def delete(self):
-        """delete the current instance from the storage"""
-        pass
+        """deletes the current instance from the storage"""
+        models.storage.delete(self)
 
     def __str__(self):
         """returns string type representation of object instance"""

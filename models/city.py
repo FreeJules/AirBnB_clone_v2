@@ -3,6 +3,7 @@
 City Class from Models Module
 """
 from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import *
 from models.base_model import BaseModel
 
 
@@ -12,6 +13,7 @@ class City(BaseModel):
     __tablename__ = 'cities'
     state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
     name = Column(String(128), nullable=False)
+    places = relationship('Place', backref=backref('cities'))
     """if storage is file"""
     state_id = ''
     name = ''

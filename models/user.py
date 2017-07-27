@@ -3,6 +3,7 @@
 User Class from Models Module
 """
 from sqlalchemy import Column, String
+from sqlalchemy import *
 from models.base_model import BaseModel
 
 
@@ -14,6 +15,8 @@ class User(BaseModel):
     password = Column(String(128), nullable=False)
     first_name = Column(String(128))
     last_name = Column(String(128))
+    places = relationship('Place', backref=backref('user'))
+    reviews = relationship('Review', backref=backref('user'))
     """if storage is file"""
     email = ''
     password = ''

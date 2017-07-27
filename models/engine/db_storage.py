@@ -55,3 +55,11 @@ class DBStorage:
         if obj is not None:
             self.__session.delete(obj)
             self.__session.commit()
+
+    def reload(self):
+        """
+        create all tables in the database
+        """
+        Base.metadata.create_all(self.__engine)
+        Session = sessionmaker(bind=self.__engine)
+        self.__session = Session()

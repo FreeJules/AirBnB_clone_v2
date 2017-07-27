@@ -35,6 +35,7 @@ class DBStorage:
         dbd = {}
         for item in self.__session.query(cls).all():
             dbd[item.id] = item
+        return (dbd)
 
     def new(self, obj):
         """

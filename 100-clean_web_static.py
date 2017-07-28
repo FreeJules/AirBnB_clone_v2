@@ -49,4 +49,6 @@ def do_clean(number=0):
 
 def deploy():
     path = do_pack()
-    return do_deploy(path)
+    retval = do_deploy(path)
+    do_clean(number)
+    return retval

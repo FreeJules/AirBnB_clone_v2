@@ -44,7 +44,8 @@ def do_deploy(archive_path):
 
 def do_clean(number=0):
     """clean"""
-    run("ls -t | tail -n +{} | xargs rm --".format(number))
+    run("ls -t /data/web_static/releases/ | tail -n +{} | xargs rm --"
+        .format(number))
 
 
 def deploy():

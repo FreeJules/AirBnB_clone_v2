@@ -18,10 +18,8 @@ class BaseModel:
     """attributes and functions for BaseModel class"""
     """if storage is db"""
     id = Column(String(60), primary_key=True, nullable=False)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow, \
-                        nullable=False)
-    updated_at = Column(DateTime, default=datetime.datetime.utcnow, \
-                        nullable=False)
+    created_at = Column(DateTime(datetime.utcnow()))
+    updated_at = Column(DateTime(datetime.utcnow()))
 
     def __init__(self, *args, **kwargs):
         """instantiation of new BaseModel Class"""

@@ -4,12 +4,8 @@ Command interpreter for Holberton AirBnB project
 """
 import cmd
 from models import base_model, user, storage, CNC
-'''
-storage = file_storage.FileStorage()
-storage.reload()
-"""CNC - dictionary = { Class Name (string) : Class Type }"""
-CNC = file_storage.FileStorage.CNC
-'''
+
+
 BaseModel = base_model.BaseModel
 User = user.User
 FS = storage
@@ -109,6 +105,7 @@ class HBNBCommand(cmd.Cmd):
         EXAMPLE: create City
                  City.create()
         """
+        d = {}
         arg = arg.split()
         if len(arg) > 1:
             d = self.create_kwargs(arg)
@@ -144,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
                             value = value.replace('_', ' ')
                         else:
                             continue
-            d[key] = value
+                d[key] = value
         return (d)
 
     def do_show(self, arg):

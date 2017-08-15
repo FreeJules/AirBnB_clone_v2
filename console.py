@@ -110,7 +110,8 @@ class HBNBCommand(cmd.Cmd):
                  City.create()
         """
         arg = arg.split()
-        d = self.create_kwargs(arg)
+        if len(arg) > 1:
+            d = self.create_kwargs(arg)
         error = self.__class_err(arg)
         if not error:
             for k, v in CNC.items():
@@ -126,28 +127,25 @@ class HBNBCommand(cmd.Cmd):
         :return: Dictionary
         """
         d = {}
-        length = len(arg)
-        if length > 1:
-            for param in range(1, length):
-                if not arg[param].startswith('=') and not arg[param]. \
-                   endswith('=') and '=' in arg[param]:
-                    position = arg[param].index('=')
-                    key = arg[param][:position]
-                    value = arg[param][(position+1):]
+        for param in range(1, len(arg)):
+            if not arg[param].startswith('=') and not arg[param].\
+               endswith('=') and '=' in arg[param]:
+                position = arg[param].index('=')
+                key = arg[param][:position]
+                value = arg[param][(position+1):]
+                try:
+                    value = int(value)
+                except:
                     try:
-                        value = int(value)
+                        value = float(value)
                     except:
-                        try:
-                            value = float(value)
-                        except:
-                            if value[0] == '"' and value[len(value)-1] == '"':
-                                print(value)
-                                value = value[1:-1]
-                                value = value.replace('_', ' ')
-                            else:
-                                continue
-                    d[key] = value
-            return (d)
+                        if value[0] == '"' and value[len(value)-1] == '"':
+                            value = value[1:-1]
+                            value = value.replace('_', ' ')
+                        else:
+                            continue
+            d[key] = value
+        return (d)
 
     def do_show(self, arg):
         """show: show [ARG] [ARG1]

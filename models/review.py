@@ -3,10 +3,10 @@
 Review Class from Models Module
 """
 from sqlalchemy import Column, String, ForeignKey
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 
 
-class Review(BaseModel):
+class Review(BaseModel, Base):
     """Review class handles all application reviews"""
     """if storage is db"""
     __tablename__ = 'reviews'

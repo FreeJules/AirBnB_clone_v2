@@ -5,10 +5,10 @@ City Class from Models Module
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy import *
 from sqlalchemy.orm import *
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 
 
-class City(BaseModel):
+class City(BaseModel, Base):
     """City class handles all application cities"""
     """if storage is db"""
     __tablename__ = 'cities'

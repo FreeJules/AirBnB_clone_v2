@@ -5,10 +5,10 @@ State Class from Models Module
 from sqlalchemy import Column, String
 from sqlalchemy import *
 from sqlalchemy.orm import *
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """State class handles all application states"""
     """if storage is db"""
     __tablename__ = 'states'

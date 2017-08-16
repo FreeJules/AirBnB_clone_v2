@@ -5,10 +5,10 @@ User Class from Models Module
 from sqlalchemy import Column, String
 from sqlalchemy import *
 from sqlalchemy.orm import *
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     """User class handles all application users"""
     """if storage is db"""
     __tablename__ = 'users'

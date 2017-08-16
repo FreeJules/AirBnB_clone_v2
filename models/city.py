@@ -8,6 +8,7 @@ from sqlalchemy.orm import *
 from models.base_model import BaseModel, Base
 from os import getenv
 
+
 class City(BaseModel, Base):
     """City class handles all application cities"""
     if getenv("HBNB_TYPE_STORAGE") == 'db':

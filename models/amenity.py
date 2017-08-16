@@ -8,6 +8,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 from os import getenv
 
+
 class Amenity(BaseModel, Base):
     """Amenity class handles all application amenities"""
     if getenv("HBNB_TYPE_STORAGE") == 'db':

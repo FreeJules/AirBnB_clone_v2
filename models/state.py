@@ -8,6 +8,7 @@ from sqlalchemy.orm import *
 from models.base_model import BaseModel, Base
 from os import getenv
 
+
 class State(BaseModel, Base):
     """State class handles all application states"""
     if getenv("HBNB_TYPE_STORAGE") == 'db':

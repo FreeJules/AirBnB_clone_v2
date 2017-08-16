@@ -8,6 +8,7 @@ from sqlalchemy.orm import *
 from models.base_model import BaseModel, Base
 from os import getenv
 
+
 class User(BaseModel, Base):
     """User class handles all application users"""
     if getenv("HBNB_TYPE_STORAGE") == 'db':

@@ -12,7 +12,10 @@ from sqlalchemy import Column, String, DateTime
 from os import getenv
 now = datetime.now
 strptime = datetime.strptime
-Base = declarative_base()
+if getenv("HBNB_TYPE_STORAGE") == 'db':
+    Base = declarative_base()
+else:
+    Base = object
 
 
 class BaseModel:
@@ -43,12 +46,10 @@ class BaseModel:
             if not isinstance(d['updated_at'], datetime):
                 d['updated_at'] = strptime(d['updated_at'],
                                            "%Y-%m-%d %H:%M:%S.%f")
-        if '__class__' in d:
+        if getenv("HBNB_TYPE_STORAGE") != 'db' and '__class__' in d:
             d.pop('__class__')
         for key, value in d.items():
-            if key not in ['id', 'created_at', 'updated_at']:
-                setattr(self, key, value)
-        self.__dict__ = d
+            setattr(self, key, value)
         """models.storage.new(self)"""
 
     def __is_serializable(self, obj_v):

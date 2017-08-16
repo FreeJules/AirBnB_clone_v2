@@ -14,9 +14,10 @@ from models.place import Place
 from models.review import Review
 from models.user import User
 
+
 class DBStorage:
     """
-
+    class DBStorage
     """
     __engine = None
     __session = None
@@ -50,8 +51,7 @@ class DBStorage:
         dbd = {}
         if cls:
             for item in self.__session.query(cls).all():
-                #dbd[item.id] = item
-                dbd[item.__dict__['id']] = item
+                dbd[item.id] = item
         return (dbd)
 
     def new(self, obj):

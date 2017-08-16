@@ -32,12 +32,26 @@ class DBStorage:
         """
         queries all or selected database objects
         """
-        CNC = {
-            'BaseModel': base_model.BaseModel,
-            'Amenity': amenity.Amenity,
-            'City': city.City,
-            'Place': place.Place,
-            'Review': review.Review,
-            'State': state.State,
-            'User': user.User
-        }
+        dbd = {}
+        for item in self.__session.query(cls).all():
+            dbd[item.id] = item
+
+    def new(self, obj):
+        """
+        add new object to the current database session
+        """
+        self.__session.add(obj)
+
+    def save(self):
+        """
+        commit all changes of the current database session
+        """
+        self.__session.commit()
+
+    def delete(self, obj=None):
+        """
+        delete from the current database session
+        """
+        if obj is not None:
+            self.__session.delete(obj)
+            self.__session.commit()

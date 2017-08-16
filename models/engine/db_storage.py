@@ -8,6 +8,7 @@ from os import getenv
 from models import base_model, amenity, city, place, review, state, user
 from models.base_model import Base
 
+
 class DBStorage:
     """
 
@@ -29,13 +30,13 @@ class DBStorage:
             Base.metadata.drop_all(bind=self.__engine)
 
         CNC = {
-        'BaseModel': base_model.BaseModel,
-        'Amenity': amenity.Amenity,
-        'City': city.City,
-        'Place': place.Place,
-        'Review': review.Review,
-        'State': state.State,
-        'User': user.User
+            'BaseModel': base_model.BaseModel,
+            'Amenity': amenity.Amenity,
+            'City': city.City,
+            'Place': place.Place,
+            'Review': review.Review,
+            'State': state.State,
+            'User': user.User
         }
 
     def all(self, cls=None):
@@ -50,15 +51,15 @@ class DBStorage:
     def new(self, obj):
         """
         add new object to the current database session
-        """
         self.__session.add(obj)
+        """
+        pass
 
     def save(self):
         """
         commit all changes of the current database session
-        self.__session.commit()
         """
-        pass
+        self.__session.commit()
 
     def delete(self, obj=None):
         """

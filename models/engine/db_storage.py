@@ -3,11 +3,16 @@
 Database Storage Engine DBStorage
 """
 from sqlalchemy import create_engine, func, MetaData
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker
 from os import getenv
-from models import base_model, amenity, city, place, review, state, user
 from models.base_model import Base
-
+from models.state import State
+from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.user import User
 
 class DBStorage:
     """
@@ -30,13 +35,12 @@ class DBStorage:
             Base.metadata.drop_all(bind=self.__engine)
 
         CNC = {
-            'BaseModel': base_model.BaseModel,
-            'Amenity': amenity.Amenity,
-            'City': city.City,
-            'Place': place.Place,
-            'Review': review.Review,
-            'State': state.State,
-            'User': user.User
+            'Amenity': Amenity,
+            'City': City,
+            'Place': Place,
+            'Review': Review,
+            'State': State,
+            'User': User
         }
 
     def all(self, cls=None):
@@ -46,7 +50,8 @@ class DBStorage:
         dbd = {}
         if cls:
             for item in self.__session.query(cls).all():
-                dbd[item.id] = item
+                #dbd[item.id] = item
+                dbd[item.__dict__['id']] = item
         return (dbd)
 
     def new(self, obj):

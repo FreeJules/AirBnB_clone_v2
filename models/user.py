@@ -16,8 +16,8 @@ class User(BaseModel, Base):
     password = Column(String(128), nullable=False)
     first_name = Column(String(128))
     last_name = Column(String(128))
-    places = relationship('Place', backref=backref('user'))
-    reviews = relationship('Review', backref=backref('user'))
+    places = relationship('Place', backref='user')
+    reviews = relationship('Review', backref='user')
     """if storage is file"""
     email = ''
     password = ''

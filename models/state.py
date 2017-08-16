@@ -13,7 +13,7 @@ class State(BaseModel, Base):
     """if storage is db"""
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
-    cities = relationship('City', backref=backref('state'))
+    cities = relationship('City', backref='state')
     """if storage is file"""
     name = ''
 

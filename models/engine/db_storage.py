@@ -44,8 +44,9 @@ class DBStorage:
         queries all or selected database objects
         """
         dbd = {}
-        for item in self.__session.query(cls).all():
-            dbd[item.id] = item
+        if cls:
+            for item in self.__session.query(cls).all():
+                dbd[item.id] = item
         return (dbd)
 
     def new(self, obj):

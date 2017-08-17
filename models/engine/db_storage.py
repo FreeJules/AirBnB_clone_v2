@@ -47,15 +47,18 @@ class DBStorage:
         """
         queries all or selected database objects
         """
+        objs = {}
         if cls is not None:
             for item in self.__session.query(self.CNC[cls]).all():
-                print(item)
+                key = cls + "." + item.id
+                objs[key] = item
         else:
             for val in self.CNC.values():
                 items = self.__session.query(val).all()
                 if items is not None:
                     for i in items:
                         print(i)
+        return (objs)
 
     def new(self, obj):
         """

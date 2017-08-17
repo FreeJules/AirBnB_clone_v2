@@ -190,12 +190,12 @@ class HBNBCommand(cmd.Cmd):
                 for v in fs_o.values():
                     if type(v).__name__ == CNC[arg[0]].__name__:
                         c += 1
-                        print(v, end=(', ' if c < l else ''))
+                        print(v, end=(',\n\n' if c < l else ''))
             else:
                 l = len(fs_o)
                 c = 0
                 for v in fs_o.values():
-                    print(v, end=(', ' if c < l else ''))
+                    print(v, end=(',\n\n' if c < l else ''))
             print(']')
 
     def do_destroy(self, arg):

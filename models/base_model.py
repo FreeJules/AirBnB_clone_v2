@@ -2,7 +2,6 @@
 """
 BaseModel Class of Models Module
 """
-
 import json
 import models
 from uuid import uuid4, UUID
@@ -92,4 +91,4 @@ class BaseModel:
     def __str__(self):
         """returns string type representation of object instance"""
         cname = type(self).__name__
-        return "[{}] ({}) {}".format(cname, self.id, self.__dict__)
+        return "[{}] ({})\n{}".format(cname, self.id, self.__dict__)

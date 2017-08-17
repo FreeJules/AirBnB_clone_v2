@@ -55,8 +55,8 @@ class DBStorage:
         else:
             for clas in self.CNC.values():
                 for item in self.__session.query(clas).all():
-                        key = str(cls) + "." + item.id
-                        objs[key] = item
+                    key = type(item).__name__ + "." + str(item.id)
+                    objs[key] = item
         return (objs)
 
     def new(self, obj):

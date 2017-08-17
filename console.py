@@ -177,7 +177,10 @@ class HBNBCommand(cmd.Cmd):
             error = self.__class_err(arg)
         if not error:
             print('[', end='')
-            fs_o = FS.all()
+            if len(arg) is not 0:
+                fs_o = FS.all(arg[0])
+            else:
+                fs_o = FS.all()
             l = 0
             if arg:
                 for v in fs_o.values():

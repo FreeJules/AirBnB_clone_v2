@@ -50,14 +50,13 @@ class DBStorage:
         objs = {}
         if cls is not None:
             for item in self.__session.query(self.CNC[cls]).all():
-                key = cls + "." + item.id
+                key = str(cls) + "." + item.id
                 objs[key] = item
         else:
-            for val in self.CNC.values():
-                items = self.__session.query(val).all()
-                if items is not None:
-                    for i in items:
-                        print(i)
+            for clas in self.CNC.values():
+                for item in self.__session.query(clas).all():
+                        key = str(cls) + "." + item.id
+                        objs[key] = item
         return (objs)
 
     def new(self, obj):

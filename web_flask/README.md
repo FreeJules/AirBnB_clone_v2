@@ -7,6 +7,7 @@
   * [A Minimal Application](http://flask.pocoo.org/docs/0.12/quickstart/#a-minimal-application)
   * [Routing](http://flask.pocoo.org/docs/0.12/quickstart/#routing), except HTTP Methods
   * [Rendering Templates](http://flask.pocoo.org/docs/0.12/quickstart/#rendering-templates)
+  * [SQLAlchemy in Flask](http://flask.pocoo.org/docs/0.12/patterns/sqlalchemy/)
 * [Jinja - Template Designer:](http://jinja.pocoo.org/docs/2.9/templates/)
   * [Synopsis](http://jinja.pocoo.org/docs/2.9/templates/#synopsis)
   * [Variables](http://jinja.pocoo.org/docs/2.9/templates/#variables)

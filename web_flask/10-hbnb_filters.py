@@ -15,11 +15,10 @@ def teardown_db(exception):
 @app.route('/hbnb_filters')
 def hbnb_filters():
     """hbnb_filters method"""
-    states = storage.all("State").values().sort()
-    cities = storage.all("City").values().sort()
-    amenities = storage.all("Amenity").values().sort()
+    states = storage.all("State").values()
+    amenities = storage.all("Amenity").values()
     return render_template('10-hbnb_filters.html', states=states,
-                           cities=cities, amenities=amenities)
+                           amenities=amenities)
 
 
 if __name__ == "__main__":

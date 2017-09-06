@@ -58,3 +58,5 @@ $ pip3 install Flask
 - All tags must be in uppercase
 - Current screenshots have been done on Chrome 56.0.2924.87.
 - No cross browsers
+
+![hbnb_step3](https://user-images.githubusercontent.com/6486822/30093780-81ae8f7a-927c-11e7-89bf-8b2c17be7c15.png)

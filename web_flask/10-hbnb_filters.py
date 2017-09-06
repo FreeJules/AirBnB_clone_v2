@@ -1,68 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-	<!-- ********************** HEAD -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Holberton AirBnB</title>
+#!/usr/bin/python3
+from models import storage
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
+app.url_map.strict_slashes = False
 
-	<!-- ********************** FAVICON -->
-	<link rel="shortcut icon" href="images/icon.png">
 
-	<!-- ********************** CSS styles -->
-	<link rel="stylesheet" href="styles/4-common.css">
-	<link rel="stylesheet" href="styles/3-header.css">
-	<link rel="stylesheet" href="styles/3-footer.css">
-	<link rel="stylesheet" href="styles/6-filters.css">
-  </head>
-  <!-- ********************** BODY -->
-  <body>
-	<!-- ********************** HEADER -->
-	<header>
-	</header>
-	<main>
-	  <!-- ********************** DIV container -->
-	  <div class="container">
-		<!-- ********************** SECTION filters -->
-		<section class="filters">
-		  <!-- ********************** LOCATIONS -->
-		  <div class="locations">
-			<h3>States</h3>
-			<h4>Lorem ipsum dolor</h4>
-			<ul class="popover">
-			  <li><h2>California</h2>
-				<ul>
-				  <li>Pacifica</li>
-				  <li>San Diego</li>
-				</ul>
-			  </li>
-			  <li><h2>Illinois</h2>
-				<ul>
-				  <li>Chicago</li>
-				  <li>Winnetka</li>
-				</ul>
-			  </li>
-			</ul>
-		  </div>
-		  <!-- ********************** AMENITIES -->
-		  <div class="amenities">
-			<h3>Amenities</h3>
-			<h4>adipiscing elit</h4>
-			<ul class="popover">
-			  <li>Pool</li>
-			  <li>Wifi</li>
-			  <li>Breakfast</li>
-			  <li>Garage</li>
-			</ul>
-		  </div>
-		  <!-- ********************** SEARCH BUTTON -->
-		  <button>Search</button>
-		</section>
-	  </div>
-	</main>
-	<!-- FOOTER -->
-	<footer>
-	  Holberton School
-	</footer>
-  </body>
-</html>
+@app.teardown_appcontext
+def teardown_db(exception):
+    """calls close method of storage"""
+    storage.close()
+
+
+@app.route('/hbnb_filters')
+def hbnb_filters():
+    """hbnb_filters method"""
+    states = storage.all("State").values().sort()
+    cities = storage.all("City").values().sort()
+    amenities = storage.all("Amenity").values().sort()
+    return render_template('10-hbnb_filters.html', states=states,
+                           cities=cities, amenities=amenities)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')

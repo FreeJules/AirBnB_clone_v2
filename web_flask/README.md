@@ -4,7 +4,7 @@
 
 * [What is a Web Framework?](https://jeffknupp.com/blog/2014/03/03/what-is-a-web-framework/)
 * [Flask - Quickstart:](http://flask.pocoo.org/docs/0.12/quickstart/)
-  * [A Minimal Application](A Minimal Application)
+  * [A Minimal Application](http://flask.pocoo.org/docs/0.12/quickstart/#a-minimal-application)
   * [Routing](http://flask.pocoo.org/docs/0.12/quickstart/#routing), except HTTP Methods
   * [Rendering Templates](http://flask.pocoo.org/docs/0.12/quickstart/#rendering-templates)
 * [Jinja - Template Designer:](http://jinja.pocoo.org/docs/2.9/templates/)
@@ -58,3 +58,5 @@ $ pip3 install Flask
 - All tags must be in uppercase
 - Current screenshots have been done on Chrome 56.0.2924.87.
 - No cross browsers
+
+![hbnb_step3](https://user-images.githubusercontent.com/6486822/30093780-81ae8f7a-927c-11e7-89bf-8b2c17be7c15.png)

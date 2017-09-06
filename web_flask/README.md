@@ -4,7 +4,7 @@
 
 * [What is a Web Framework?](https://jeffknupp.com/blog/2014/03/03/what-is-a-web-framework/)
 * [Flask - Quickstart:](http://flask.pocoo.org/docs/0.12/quickstart/)
-  * [A Minimal Application](A Minimal Application)
+  * [A Minimal Application](http://flask.pocoo.org/docs/0.12/quickstart/#a-minimal-application)
   * [Routing](http://flask.pocoo.org/docs/0.12/quickstart/#routing), except HTTP Methods
   * [Rendering Templates](http://flask.pocoo.org/docs/0.12/quickstart/#rendering-templates)
 * [Jinja - Template Designer:](http://jinja.pocoo.org/docs/2.9/templates/)

@@ -70,3 +70,7 @@ class FileStorage:
         obj_id = obj.__class__.__name__ + '.' + obj.id
         self.__objects.pop(obj_id)
         self.save()
+
+    def close(self):
+        """close method"""
+        self.reload()

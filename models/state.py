@@ -6,7 +6,7 @@ from sqlalchemy import Column, String
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from models.base_model import BaseModel, Base
-from os import getenv
+from os import getenv, environ
 
 
 class State(BaseModel, Base):
@@ -22,7 +22,7 @@ class State(BaseModel, Base):
         """instantiates a new state"""
         super().__init__(self, *args, **kwargs)
 
-    if getenv("HBNB_TYPE_STORAGE") is None or \
+    if environ.get("HBNB_TYPE_STORAGE") is None or \
        getenv("HBNB_TYPE_STORAGE") != 'db':
         def cities(self):
             from models import storage

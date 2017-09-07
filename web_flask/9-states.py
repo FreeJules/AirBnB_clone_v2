@@ -13,15 +13,12 @@ def teardown_db(exception):
 
 
 @app.route('/states')
-def states():
-    """states method"""
-    states = storage.all("State")
-    return render_template('7-states_list.html', states=states)
-
-
 @app.route('/states/<id>')
-def state_id(id):
+def state_id(id=None):
     """state_id method"""
+    if id is None:
+        states = storage.all("State")
+        return render_template('7-states_list.html', states=states)
     state_id = str(id)
     states = storage.all("State").values()
     for state in states:

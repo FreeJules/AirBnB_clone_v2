@@ -22,17 +22,15 @@ def states():
 @app.route('/states/<id>')
 def state_id(id):
     """state_id method"""
-    try:
-        state_id = str(id)
-        states = storage.all("State").values()
-        for state in states:
-            if state.id == state_id:
-                state_name = state.name
-                cities = state.cities
-                return render_template('9-states.html', condition='found',
-                                       state_name=state_name, cities=cities)
-    except:
-        return render_template('9-states.html', condition='not_found')
+    state_id = str(id)
+    states = storage.all("State").values()
+    for state in states:
+        if state.id == state_id:
+            state_name = state.name
+            cities = state.cities
+            return render_template('9-states.html', condition='found',
+                                   state_name=state_name, cities=cities)
+    return render_template('9-states.html', condition='not_found')
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@
 State Class from Models Module
 """
 from models.base_model import BaseModel, Base
+import models
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 from os import environ, getenv
@@ -13,9 +14,9 @@ class State(BaseModel, Base):
     if getenv("HBNB_TYPE_STORAGE") == 'db':
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
-        cities = relationship("City", backref="state", cascade="all")
+        cities = relationship('City', backref='state', cascade="all")
     else:
-        name = ""
+        name = ''
 
         @property
         def cities(self):

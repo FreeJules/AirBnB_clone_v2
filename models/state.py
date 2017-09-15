@@ -3,7 +3,6 @@
 State Class from Models Module
 """
 from models.base_model import BaseModel, Base
-import models
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 from os import environ, getenv

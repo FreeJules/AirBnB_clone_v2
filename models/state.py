@@ -18,7 +18,12 @@ class State(BaseModel, Base):
     else:
         name = ''
 
+        @property
         def cities(self):
+            """
+                getter method, returns list of City objs from storage
+                linked to the current State
+            """
             from models import storage
             cities_dict = storage.all("City")
             cities = []

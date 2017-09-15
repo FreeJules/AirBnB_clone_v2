@@ -17,13 +17,14 @@ class State(BaseModel, Base):
         cities = relationship('City', backref='state', cascade="all")
     else:
         name = ''
+
         def cities(self):
             from models import storage
             cities_dict = storage.all("City")
             cities = []
             for item in cities_dict.values():
                 if item['state_id'] == self.id:
-                                cities.append(item)
+                    cities.append(item)
             return cities
 
     def __init__(self, *args, **kwargs):

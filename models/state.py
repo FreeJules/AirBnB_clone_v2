@@ -24,13 +24,11 @@ class State(BaseModel, Base):
                 getter method, returns list of City objs from storage
                 linked to the current State
             """
-            from models import storage
-            cities_dict = storage.all("City")
-            cities = []
-            for item in cities_dict.values():
-                if item['state_id'] == self.id:
-                    cities.append(item)
-            return cities
+            cities_list = []
+            for city in models.storage.all("City").values():
+                if city.state_id == self.id:
+                    cities_list.append(city)
+            return cities_list
 
     def __init__(self, *args, **kwargs):
         """instantiates a new state"""

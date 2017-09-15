@@ -29,7 +29,3 @@ class State(BaseModel, Base):
                 if city.state_id == self.id:
                     cities_list.append(city)
             return cities_list
-
-    def __init__(self, *args, **kwargs):
-        """instantiates a new state"""
-        super().__init__(self, *args, **kwargs)

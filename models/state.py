@@ -6,12 +6,12 @@ from sqlalchemy import Column, String
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from models.base_model import BaseModel, Base
-import os
+from os import environ, getenv
 
 
 class State(BaseModel, Base):
     """State class handles all application states"""
-    if os.environ.get('HBNB_TYPE_STORAGE') == 'db':
+    if 'HBNB_TYPE_STORAGE' in environ and getenv("HBNB_TYPE_STORAGE") == 'db':
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
         cities = relationship('City', backref='state', cascade="all")
@@ -29,3 +29,7 @@ class State(BaseModel, Base):
                 if city.state_id == self.id:
                     cities_list.append(city)
             return cities_list
+
+    def __init__(self, *args, **kwargs):
+        """instantiates a new state"""
+        super().__init__(self, *args, **kwargs)
